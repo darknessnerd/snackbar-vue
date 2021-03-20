@@ -2,13 +2,14 @@
   <teleport to="#app">
   <transition name="snack">
      <div
+      v-if="config.action"
       :style="styles"
       class="snackbar"
       :class="config.position">
       <div class="snackbar__text">{{ config.text }}</div>
       <template v-if="config.button">
         <div
-          @click.prevent="action"
+          @click.prevent="config.action"
           class="snackbar__action">{{ config.button }}</div>
       </template>
       <template v-if="config.close">
@@ -40,12 +41,8 @@ export default defineComponent({
   setup(props) {
     console.error(props.config);
     const styles = computed(() => `--primary: ${props.config[props.config.theme].primary}`);
-    const active = ref(true);
-    const action = ref();
     return {
       styles,
-      active,
-      action,
     };
   },
 });

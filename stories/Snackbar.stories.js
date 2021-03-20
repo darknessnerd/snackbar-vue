@@ -9,10 +9,19 @@ const Template = (args) => ({
   // The story's `args` need to be mapped into the template through the `setup()` method
   setup() {
     console.log(getCurrentInstance().appContext.config.globalProperties.$snack);
+    let showFn;
     onMounted(() => {
-      getCurrentInstance().appContext.config.globalProperties.$snack.danger({ title: 'prova' });
+      showFn = getCurrentInstance().appContext.config.globalProperties.$snack;
     });
-    return { args };
+    const show = () => {
+      showFn.danger({
+          title: 'prova',
+          button: 'Close',
+          time: 5000,
+          action: () => { console.log('action'); }
+        }); 
+    }
+    return { args, show };
   },
   // And then the `args` are bound to your component with `v-bind="args"`
   template: args.template,
@@ -20,5 +29,5 @@ const Template = (args) => ({
 
 export const BasicMessage = Template.bind({});
 BasicMessage.args = {
-  template: 'test',
+  template: '<button @click="show">show</button>',
 };

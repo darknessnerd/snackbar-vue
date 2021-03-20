@@ -1,41 +1,56 @@
-import { createApp, defineComponent } from 'vue';
+import { createApp, ref } from 'vue';
 import Default from './default';
 import SnackBar from './SnackBar.vue';
 
 let currentComponent = null;
+let currentConfiguration = null;
 let timeout = null;
 const snackbarQueue = [];
+
 const methods = {
   danger: 'danger',
   show: 'default',
   success: 'success',
 };
-
 // eslint-disable-next-line no-unused-vars
 const sleep = (time) => new Promise((resolve, reject) => setTimeout((_) => resolve(), time));
+
 const close = async () => {
-  clearTimeout(timeout);
-  currentComponent.active = false;
+  clearTimeout(timeout); 
+  currentConfiguration.value.action = false;
   await sleep(400);
+  currentComponent.unmount();
   currentComponent = null;
+  document.getElementById(currentConfiguration.value.id).remove();
+  // TODO Remove the div 
   // eslint-disable-next-line no-use-before-define
   processQueue();
 };
+
 /**
- * Shift from the queue if there is at least one element in the queue and is not already showing
- * a snack bar
+ * Shift from the queue if there is at least one element in the queue and
+ * is not already showing a snack bar
  */
 const processQueue = () => {
   if (snackbarQueue.length <= 0 || currentComponent !== null) {
     return;
   }
-  const component = snackbarQueue.shift();
+  currentConfiguration = snackbarQueue.shift();
+  const SnackbarComponent = createApp({
+    components: { SnackBar },
+    action: ref(false),
+    setup() {
+      return { currentConfiguration };
+    },
+    template: '<SnackBar :config="currentConfiguration"/>',
+  });
   const div = document.createElement('div');
   div.id = `snackbar-${Date.now()}`;
+  currentConfiguration.value.id = div.id;
   document.getElementById('app').appendChild(div);
-  currentComponent = component;
+  currentComponent = SnackbarComponent;
   currentComponent.mount(`#${div.id}`);
-  timeout = setTimeout(close, currentComponent.time);
+  timeout = setTimeout(close, currentConfiguration.value.time);
 };
 
 const actions = async (params, theme) => {
@@ -56,19 +71,9 @@ const actions = async (params, theme) => {
     await fn();
     close();
   };
-
   options = { ...Default, ...options, theme };
   console.debug('options', options);
-  const SnackbarComponent = createApp({
-    components: { SnackBar },
-    setup() {
-      const cfg = { ...options };
-      return { cfg };
-    },
-    template: '<SnackBar :config="cfg"/>',
-  });
-  console.warn(SnackbarComponent);
-  snackbarQueue.push(SnackbarComponent);
+  snackbarQueue.push(ref({ ...options }));
   processQueue();
 };
 
@@ -86,8 +91,6 @@ const $snack = (opt) => {
   Object.assign(Default, themes);
   const all = {};
   const meth = { ...methods, ...news };
-
-  console.warn(Object.keys(meth));
   Object.keys(meth).forEach((m) => {
     console.warn(m);
     all[m] = (params) => actions(params, meth[m]);
