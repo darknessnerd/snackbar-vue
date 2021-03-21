@@ -1,6 +1,6 @@
-import { createApp, ref } from 'vue';
+import { createApp, ref, computed } from 'vue';
 import Default from './default';
-import SnackBar from './SnackBar.vue';
+import template from './template';
 
 let currentComponent = null;
 let currentConfiguration = null;
@@ -37,12 +37,12 @@ const processQueue = () => {
   }
   currentConfiguration = snackbarQueue.shift();
   const SnackbarComponent = createApp({
-    components: { SnackBar },
     action: ref(false),
     setup() {
-      return { currentConfiguration };
+      const styles = computed(() => `--primary: ${currentConfiguration.value[currentConfiguration.value.theme].primary}`);
+      return { currentConfiguration, styles };
     },
-    template: '<SnackBar :config="currentConfiguration"/>',
+    template,
   });
   const div = document.createElement('div');
   div.id = `snackbar-${Date.now()}`;

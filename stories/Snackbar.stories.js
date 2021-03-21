@@ -15,6 +15,7 @@ const Template = (args) => ({
     });
     const show = () => {
       showFn.danger({
+          position: 'top',
           title: 'prova',
           button: 'Close',
           time: 5000,
