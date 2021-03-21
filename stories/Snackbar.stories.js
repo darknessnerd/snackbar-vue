@@ -1,4 +1,4 @@
-import { onMounted, getCurrentInstance } from 'vue';
+import { useSnackbarPlugin } from '@/index';
 
 export default {
   title: 'snackbar',
@@ -6,22 +6,20 @@ export default {
 };
 
 const Template = (args) => ({
-  // The story's `args` need to be mapped into the template through the `setup()` method
   setup() {
-    console.log(getCurrentInstance().appContext.config.globalProperties.$snack);
-    let showFn;
-    onMounted(() => {
-      showFn = getCurrentInstance().appContext.config.globalProperties.$snack;
-    });
+    const snack = useSnackbarPlugin();
     const show = () => {
-      showFn.danger({
-          position: 'top',
-          title: 'prova',
-          button: 'Close',
-          time: 5000,
-          action: () => { console.log('action'); }
-        }); 
-    }
+      snack.test({
+        background: '#ffffff',
+        textColor: '#000000',
+        position: 'top',
+        text: `prova ${Date.now()}`,
+        button: 'REDO',
+        time: 5000,
+        close: true,
+        action: () => { show(); },
+      });
+    };
     return { args, show };
   },
   // And then the `args` are bound to your component with `v-bind="args"`

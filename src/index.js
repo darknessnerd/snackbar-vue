@@ -1,12 +1,14 @@
-import { createApp, ref, computed } from 'vue';
+import {
+  defineComponent, ref, inject, watch, createVNode, render,
+} from 'vue';
 import Default from './default';
 import template from './template';
 
 let currentComponent = null;
-let currentConfiguration = null;
+const currentConfiguration = ref(null);
 let timeout = null;
 const snackbarQueue = [];
-
+const snackbarPlugin = Symbol('snackbarPlugin');
 const methods = {
   danger: 'danger',
   show: 'default',
@@ -16,40 +18,24 @@ const methods = {
 const sleep = (time) => new Promise((resolve, reject) => setTimeout((_) => resolve(), time));
 
 const close = async () => {
-  clearTimeout(timeout); 
+  clearTimeout(timeout);
   currentConfiguration.value.action = false;
   await sleep(400);
-  currentComponent.unmount();
-  currentComponent = null;
-  document.getElementById(currentConfiguration.value.id).remove();
-  // TODO Remove the div 
+  currentConfiguration.value = null;
   // eslint-disable-next-line no-use-before-define
   processQueue();
 };
-
 /**
  * Shift from the queue if there is at least one element in the queue and
  * is not already showing a snack bar
  */
 const processQueue = () => {
-  if (snackbarQueue.length <= 0 || currentComponent !== null) {
+  if ((snackbarQueue.length <= 0 || currentConfiguration.value !== null)
+    && currentComponent
+  ) {
     return;
   }
-  currentConfiguration = snackbarQueue.shift();
-  const SnackbarComponent = createApp({
-    action: ref(false),
-    setup() {
-      const styles = computed(() => `--primary: ${currentConfiguration.value[currentConfiguration.value.theme].primary}`);
-      return { currentConfiguration, styles };
-    },
-    template,
-  });
-  const div = document.createElement('div');
-  div.id = `snackbar-${Date.now()}`;
-  currentConfiguration.value.id = div.id;
-  document.getElementById('app').appendChild(div);
-  currentComponent = SnackbarComponent;
-  currentComponent.mount(`#${div.id}`);
+  currentConfiguration.value = snackbarQueue.shift();
   timeout = setTimeout(close, currentConfiguration.value.time);
 };
 
@@ -61,7 +47,6 @@ const actions = async (params, theme) => {
   if (typeof options === 'string') {
     options = { text: options };
   }
-  console.warn(options, theme);
   const fn = options.action;
   options.action = async () => {
     if (!fn) {
@@ -72,8 +57,7 @@ const actions = async (params, theme) => {
     close();
   };
   options = { ...Default, ...options, theme };
-  console.debug('options', options);
-  snackbarQueue.push(ref({ ...options }));
+  snackbarQueue.push({ ...options });
   processQueue();
 };
 
@@ -101,9 +85,39 @@ const $snack = (opt) => {
 const SnackbarPlugin = {
   install(app, options = {}) {
     Object.assign(Default, options);
-    // eslint-disable-next-line no-param-reassign
-    app.config.globalProperties.$snack = $snack(options);
+    app.provide(snackbarPlugin, $snack(options));
+    document.addEventListener('DOMContentLoaded', () => {
+      const SnackbarComponent = defineComponent({
+        action: ref(false),
+        setup() {
+          const styles = ref('');
+          watch(currentConfiguration, (val) => {
+            if (val !== null) {
+              const { theme } = currentConfiguration.value;
+              styles.value = `--primary: ${currentConfiguration.value[theme].primary};
+              --text: ${currentConfiguration.value.textColor};
+              --background: ${currentConfiguration.value.background};`;
+            } else {
+              styles.value = '';
+            }
+          });
+          return { close, currentConfiguration, styles };
+        },
+        template,
+      });
+      const vNode = createVNode(SnackbarComponent);
+      // eslint-disable-next-line no-underscore-dangle
+      vNode.appContext = app._context;
+      render(vNode, document.createElement('div'));
+      currentComponent = SnackbarComponent;
+    });
   },
 };
+
+export function useSnackbarPlugin() {
+  const snackbarPluginInstance = inject(snackbarPlugin);
+  if (!snackbarPluginInstance) throw new Error('No snackbarPlugin provided!!!');
+  return snackbarPluginInstance;
+}
 
 export default SnackbarPlugin;

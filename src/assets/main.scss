@@ -30,6 +30,7 @@ $sm: 576px;
     color: var(--text);
     font-family: var(--font);
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -46,11 +47,9 @@ $sm: 576px;
         @media screen and (min-width: $sm) {
             transform: translateX(-50%);
             left: 50%;
-
             &-left {
                 left: 1rem;
             }
-
             &-right {
                 right: 1rem;
             }
@@ -68,11 +67,9 @@ $sm: 576px;
     @media screen and (max-width: $sm) {
         transform: translateX(-50%);
         left: 50%;
-
         &[class*="bottom"] {
             bottom: 0;
         }
-
         &[class*="top"] {
             top: 0;
         }
@@ -139,12 +136,12 @@ $sm: 576px;
   }
   &[class*="top"] {
     @media screen and (max-width: $sm) {
-      transform: translateY(-100%);
+      transform: translateY(-100%) translateX(-50%);
     }
   }
   &[class*="bottom"] {
     @media screen and (max-width: $sm) {
-      transform: translateY(100%);
+      transform: translateY(100%) translateX(-50%);
     }
   }
   &[class*="-left"] {

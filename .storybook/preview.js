@@ -8,4 +8,9 @@ import '../stories/assets/custom.css';
 
 import { app } from '@storybook/vue3';
 
-app.use(SnackbarPlugin);
+app.use(SnackbarPlugin, {
+  methods: [{
+    name: 'test',
+    color: 'green'
+  }]
+});
