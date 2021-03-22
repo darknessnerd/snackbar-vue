@@ -15,7 +15,7 @@ const Template = (args) => ({
         position: 'top',
         text: `prova ${Date.now()}`,
         button: 'REDO',
-        time: 5000,
+        time: 100000000000,
         close: true,
         action: () => { show(); },
       });

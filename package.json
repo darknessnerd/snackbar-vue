@@ -5,13 +5,13 @@
   "author": "Brunino Criniti <crinitib@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/darknessnerd/drop-zone.git"
+    "url": "https://github.com/darknessnerd/snackbar.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/darknessnerd/drop-zone/issues"
+    "url": "https://github.com/darknessnerd/snackbar/issues"
   },
-  "homepage": "https://github.com/darknessnerd/drop-zone",
+  "homepage": "https://github.com/darknessnerd/snackbar",
   "keywords": [
     "vue3",
     "snackbar",
