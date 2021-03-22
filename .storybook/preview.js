@@ -1,4 +1,4 @@
-import SnackbarPlugin from "@/index";
+import {SnackbarPlugin} from "@/index";
 import "@/assets/main.scss";
 
 export const parameters = {

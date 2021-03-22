@@ -28,11 +28,33 @@ Register the plugin
 
 ```js
 
+import {SnackbarPlugin} from "@/index";
+
+app.use(SnackbarPlugin, {
+  methods: [{
+    name: 'test',
+    color: 'green'
+  }]
+});
+
 ```
 
 Now your component it's possible to inject the snackbar:
 
 ```js
+import { useSnackbarPlugin } from '@/index';
+// ...
+const snack = useSnackbarPlugin();
 
-
+snack.test({
+  background: '#ffffff',
+  textColor: '#000000',
+  position: 'top',
+  text: `prova ${Date.now()}`,
+  button: 'REDO',
+  time: 5000,
+  close: true,
+  action: () => { show(); },
+});
+   
 ```
