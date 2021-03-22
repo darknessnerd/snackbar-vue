@@ -1,5 +1,5 @@
 {
-  "name": "snackbar",
+  "name": "snackbar-vue",
   "version": "0.1.0",
   "private": false,
   "author": "Brunino Criniti <crinitib@gmail.com>",
@@ -19,8 +19,8 @@
     "queue"
   ],
   "description": "Vue3 Library Component for snackbar notification with queue",
-  "main": "dist/snackbar.common.js",
-  "unpkg": "dist/snackbar.umd.min.js",
+  "main": "dist/snackbar-vue.common.js",
+  "unpkg": "dist/snackbar-vue.umd.min.js",
   "files": [
     "dist/"
   ],
