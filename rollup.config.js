@@ -27,14 +27,14 @@ export default {
       format: 'cjs',
       sourcemap: true,
       banner,
-      exports: 'default',
+      exports: 'named',
     },
     {
       file: pkg.unpkg,
       format: 'umd',
       name: 'snackbar',
       sourcemap: true,
-      exports: 'default',
+      exports: 'named',
       globals: {
         vue: 'Vue',
       },

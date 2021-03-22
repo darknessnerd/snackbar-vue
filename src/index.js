@@ -114,10 +114,10 @@ const SnackbarPlugin = {
   },
 };
 
-export function useSnackbarPlugin() {
+function useSnackbarPlugin() {
   const snackbarPluginInstance = inject(snackbarPlugin);
   if (!snackbarPluginInstance) throw new Error('No snackbarPlugin provided!!!');
   return snackbarPluginInstance;
 }
 
-export default SnackbarPlugin;
+export { SnackbarPlugin, useSnackbarPlugin };
