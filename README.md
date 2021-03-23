@@ -8,11 +8,11 @@
 ![npm collaborators](https://img.shields.io/npm/collaborators/snackbar-vue)
 
 :bomb:<br>
-[Features Live Demo Link: Click here !! ](https://darknessnerd.github.io/snackbar/index.html)
+[Features Live Demo Link: Click here !! ](https://darknessnerd.github.io/snackbar-vue/index.html)
 
 > Vue3 Library For a snackbar notification system.
 
-![demo](https://github.com/darknessnerd/snackbar/blob/main/stories/assets/demo.gif?raw=true)
+![demo](https://github.com/darknessnerd/snackbar-vue/blob/main/stories/assets/demo.gif?raw=true)
 
 ### :rocket: Features
 
