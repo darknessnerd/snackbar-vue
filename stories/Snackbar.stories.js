@@ -1,8 +1,10 @@
 import { useSnackbarPlugin } from '@/index';
+import { onMounted } from 'vue';
 
 export default {
   title: 'snackbar',
-  decorators: [() => ({ template: '<div style="flex-grow: 1;" id="app"><story/></div>' })],
+  decorators: [() => ({
+    template: '<div style="flex-grow: 1; background-color: whitesmoke;" id="app"><story/></div>' })],
 };
 
 const Template = (args) => ({
@@ -13,13 +15,48 @@ const Template = (args) => ({
         background: '#ffffff',
         textColor: '#000000',
         position: 'top',
-        text: `prova ${Date.now()}`,
+        text: `Test custom method ${Date.now()}`,
         button: 'REDO',
         time: 100000000000,
         close: true,
         action: () => { show(); },
       });
+      snack.danger({
+        position: 'bottom',
+        text: `Test Danger ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        close: false,
+        action: () => { show(); },
+      });
+      snack.success({
+        position: 'bottom',
+        text: `Test Success ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        close: false,
+        action: () => { show(); },
+      });
+      snack.show({
+        position: 'bottom',
+        text: `Test Show ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        close: false,
+        action: () => { show(); },
+      });
+      snack.show({
+        position: 'bottom',
+        text: `Test Show ${Date.now()}`,
+        time: 2000,
+        close: true,
+      });
+
     };
+
+    onMounted(() => {
+      
+    });
     return { args, show };
   },
   // And then the `args` are bound to your component with `v-bind="args"`
