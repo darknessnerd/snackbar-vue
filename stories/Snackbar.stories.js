@@ -28,7 +28,7 @@ const Template = (args) => ({
         close: true,
       });
       snack.danger({
-        position: 'bottom',
+        position: 'bottom ',
         text: `Test Danger ${Date.now()}`,
         button: 'ACTION',
         time: 2000,
