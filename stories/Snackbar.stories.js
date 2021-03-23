@@ -21,6 +21,12 @@ const Template = (args) => ({
         close: true,
         action: () => { show(); },
       });
+      snack.show({
+        position: 'bottom',
+        text: `Test Show ${Date.now()}`,
+        time: 2000,
+        close: true,
+      });
       snack.danger({
         position: 'bottom',
         text: `Test Danger ${Date.now()}`,
@@ -45,12 +51,7 @@ const Template = (args) => ({
         close: false,
         action: () => { show(); },
       });
-      snack.show({
-        position: 'bottom',
-        text: `Test Show ${Date.now()}`,
-        time: 2000,
-        close: true,
-      });
+ 
 
     };
 
