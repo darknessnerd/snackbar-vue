@@ -55,6 +55,7 @@ export default {
           replacement: `${path.resolve(projectRoot, 'src')}`,
         },
       ],
+      vue$: require.resolve('vue/dist/vue.esm-bundler.js'),
       customResolver: nodeResolve({
         extensions: ['.js', '.jsx', '.vue'],
       }),
