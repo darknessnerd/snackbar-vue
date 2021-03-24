@@ -1,5 +1,5 @@
 import { useSnackbarPlugin } from '@/index';
-import { onMounted } from 'vue';
+import { ref } from 'vue';
 
 export default {
   title: 'snackbar',
@@ -9,8 +9,34 @@ export default {
 const Template = (args) => ({
   setup() {
     const snack = useSnackbarPlugin();
+    const actionClicked = ref('');
+    const success = () => {
+      snack.success({
+        position: 'bottom',
+        text: `Test Success ${Date.now()}`,
+        button: 'ACTION',
+        action: () => { actionClicked.value = 'success'; },
+      });
+    };
+    const danger = () => {
+      snack.danger({
+        position: 'bottom',
+        text: `Test danger ${Date.now()}`,
+        button: 'ACTION',
+        action: () => { actionClicked.value = 'danger'; },
+      });
+    };
     const show = () => {
-      snack.test({
+      snack.show({
+        position: 'bottom',
+        text: `Test danger ${Date.now()}`,
+        close: true,
+        action: () => { actionClicked.value = 'show'; },
+      });
+    };
+    const customMethod = () => {
+      console.error(args);
+      snack.customMethod({
         background: '#ffffff',
         textColor: '#000000',
         position: 'top',
@@ -18,43 +44,22 @@ const Template = (args) => ({
         button: 'REDO',
         time: 100000000000,
         close: true,
-        action: () => { show(); },
-      });
-      snack.show({
-        position: 'bottom',
-        text: `Test Show ${Date.now()}`,
-        close: true,
-      });
-      snack.danger({
-        position: 'bottom ',
-        text: `Test Danger ${Date.now()}`,
-        button: 'ACTION',
-        action: () => { show(); },
-      });
-      snack.success({
-        position: 'bottom',
-        text: `Test Success ${Date.now()}`,
-        button: 'ACTION',
-        action: () => { show(); },
-      });
-      snack.show({
-        position: 'bottom',
-        text: `Test Show ${Date.now()}`,
-        button: 'ACTION',
-        action: () => { show(); },
+        action: () => { actionClicked.value = 'test'; },
       });
     };
-
-    onMounted(() => {
-
-    });
-    return { args, show };
+    return {
+      args, customMethod, show, danger, success, actionClicked,
+    };
   },
   // And then the `args` are bound to your component with `v-bind="args"`
   template: args.template,
 });
 
-export const BasicMessage = Template.bind({});
-BasicMessage.args = {
-  template: '<button @click="show">show</button>',
+export const Demo = Template.bind({});
+Demo.args = {
+  template: 'Action clicked: {{actionClicked}} <br><br>'
+    + '<button style="margin-right: 4px" @click="customMethod">customMethod</button>'
+    + '<button style="margin-right: 4px" @click="show">show</button>'
+    + '<button style="margin-right: 4px" @click="danger">danger</button>'
+    + '<button style="margin-right: 4px" @click="success">success</button>',
 };
