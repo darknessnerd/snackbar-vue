@@ -55,7 +55,6 @@ export default {
           replacement: `${path.resolve(projectRoot, 'src')}`,
         },
       ],
-      vue: path.resolve('./node_modules/vue/dist/vue.esm.js'),
       customResolver: nodeResolve({
         extensions: ['.js', '.jsx', '.vue'],
       }),
@@ -63,9 +62,8 @@ export default {
     scss(),
     vuePlugin({
       target: 'browser',
-      css: false,
       template: {
-        isProduction: true,
+        optimizeSSR: true,
       },
     }),
     babel({
@@ -77,6 +75,9 @@ export default {
       ],
     }),
     commonjs(), // Convert CommonJS modules to ES6, so they can be included in a Rollup bundle
+    alias({
+      vue: require.resolve('vue/dist/vue.esm-bundler.js'),
+    }),
     nodeResolve(),
     terser({
       output: {
