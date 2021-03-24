@@ -8,6 +8,7 @@ export default {
   danger: {
     primary: '#FF0057',
   },
+  teleportTo: 'body',
   background: '#353535',
   textColor: '#E3E3E3',
   time: 5000,

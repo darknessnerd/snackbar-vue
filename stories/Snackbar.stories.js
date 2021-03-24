@@ -58,6 +58,7 @@ const Template = (args) => ({
 export const Demo = Template.bind({});
 Demo.args = {
   template: 'Action clicked: {{actionClicked}} <br><br>'
+    + '<div id="test"></div>'
     + '<button style="margin-right: 4px" @click="customMethod">customMethod</button>'
     + '<button style="margin-right: 4px" @click="show">show</button>'
     + '<button style="margin-right: 4px" @click="danger">danger</button>'

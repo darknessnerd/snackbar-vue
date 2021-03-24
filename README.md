@@ -43,9 +43,20 @@ Default configurations :
   "time": 5000,
   "position": "bottom",
   "font": "sans-serif",
-  "close": false
+  "close": false,
+  "teleportTo": 'body'
 }
 ```
+Specifies a target element where snackbar will be moved
+teleportTo has to be a valid query selector, example: 
+<!-- ok -->
+teleportTo="#some-id"
+teleportTo=".some-class"
+teleportTo="HTMLElelement"
+
+<!-- Wrong -->
+teleportTo="h1"
+teleportTo="some-string"
 
 ```js
 import {SnackbarPlugin} from 'snackbar-vue';

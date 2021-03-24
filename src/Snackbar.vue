@@ -1,5 +1,6 @@
 <template>
-<teleport to="#app">
+<teleport :to="teleportTo">
+{{teleportTo}}
 <transition name="snackbar" v-if="currentConfiguration" >
   <div v-if="currentConfiguration.action" :style="styles"
        class="snackbar"
@@ -28,7 +29,7 @@ import { ref, defineComponent, computed } from 'vue';
 
 export default defineComponent({
   action: ref(false),
-  props: ['currentConfiguration', 'close'],
+  props: ['currentConfiguration', 'close','teleportTo'],
   setup(props) {
     const styles = computed(() => {
       const { theme } = props.currentConfiguration;

@@ -10,6 +10,7 @@ import { app } from '@storybook/vue3';
 
 app.use(SnackbarPlugin, {
   time: 2000,
+  teleportTo: '#test',
   close: false,
   font: {
     family: 'Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif',
