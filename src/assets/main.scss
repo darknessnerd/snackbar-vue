@@ -13,15 +13,11 @@ $sm: 576px;
     &__text {
       flex-grow: 1;
     }
-
     &__action {
-      background-color: red;
       flex-grow: 1;
       flex-shrink: 1;
     }
-
     &__close {
-      background-color: red;
       flex-grow: 0;
       flex-shrink: 0;
     }
@@ -39,12 +35,11 @@ $sm: 576px;
     position: fixed;
     min-height: var(--close);
     padding: var(--padd);
-    border-radius: 8px;
+    border-radius: 4px;
     @media screen and (max-width: $sm) {
-        border-radius: 4px;
+        border-radius: 2px;
         width: calc(100% - (2 * var(--padd)));
     }
-
     &.top, &.bottom {
         @media screen and (min-width: $sm) {
             transform: translateX(-50%);
@@ -57,15 +52,12 @@ $sm: 576px;
             }
         }
     }
-
     &[class*="bottom"] {
         bottom: 1rem;
     }
-
     &[class*="top"] {
         top: 1rem;
     }
-
     @media screen and (max-width: $sm) {
         transform: translateX(-50%);
         left: 50%;
@@ -76,14 +68,21 @@ $sm: 576px;
             top: 0;
         }
     }
-
     &__text {
         flex-grow: 1;
         display: flex;
         justify-content: left; /* align horizontal */
         align-items: center; /* align vertical */
     }
-
+    &__controls {
+      margin-left: 16px;
+      flex-shrink: 1;
+      flex-grow: 1;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end; /* align horizontal */
+      align-items: center; /* align vertical */
+    }
     &__action {
         text-transform: uppercase;
         font-weight: 500;
@@ -95,10 +94,10 @@ $sm: 576px;
         justify-content: flex-end; /* align horizontal */
         align-items: center; /* align vertical */
     }
-
     &__close {
       margin-left: 8px;
       flex-shrink: 0;
+      flex-grow: 0;
       display: flex;
       flex-flow: row nowrap;
       cursor: pointer;
@@ -139,7 +138,6 @@ $sm: 576px;
     }
   }
 }
-
 
 .gg-close {
   box-sizing: border-box;

@@ -4,7 +4,8 @@ export default `<teleport to="#app">
        class="snackbar"
        :class="currentConfiguration.position">
     <div class="snackbar__text">{{ currentConfiguration.text }}</div>
-    <template v-if="currentConfiguration.button">
+    <div class="snackbar__controls">
+     <template v-if="currentConfiguration.button">
       <div @click.prevent="currentConfiguration.action"
            class="snackbar__action">
            <div>{{ currentConfiguration.button }} </div>
@@ -15,6 +16,7 @@ export default `<teleport to="#app">
         <i class="gg-close"></i>
       </div>
     </template>
+    </div>
   </div>
 </transition>
 </teleport>`;
