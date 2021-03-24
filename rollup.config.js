@@ -49,7 +49,7 @@ export default {
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
     }),
     alias({
-      vue: 'vue/dist/vue.esm.js',
+      vue: 'vue/dist/vue.esm-bundler.js',
     }),
     alias({
       entries: [
