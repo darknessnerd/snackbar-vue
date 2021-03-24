@@ -26,10 +26,34 @@ $ npm install --save snackbar-vue
 
 Register the plugin
 
-```js
+Default configurations : 
+```json
+{
+  "default": {
+    "primary": "#2C89F1"
+  },
+  "success": {
+    "primary": "#00DEB2"
+  },
+  "danger": {
+    "primary": "#FF0057"
+  },
+  "background": "#353535",
+  "textColor": "#E3E3E3",
+  "time": 5000,
+  "position": "bottom",
+  "font": "sans-serif",
+  "close": false
+}
+```
 
+```js
 import {SnackbarPlugin} from "@/index";
 
+/**
+Here it's possibile to override the default configuration
+**/
+// With some custom method
 app.use(SnackbarPlugin, {
   methods: [{
     name: 'test',
@@ -37,6 +61,21 @@ app.use(SnackbarPlugin, {
   }]
 });
 
+/*
+With some custom global configuration
+*/
+app.use(SnackbarPlugin, {
+  time: 1000,
+  close: true,
+  font: {
+    family: 'Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif',
+    size: '18px',
+  },
+  methods: [{
+    name: 'test',
+    color: 'green'
+  }]
+});
 ```
 
 Now your component it's possible to inject the snackbar:
@@ -83,5 +122,4 @@ snack.success({
         time: 2000,
         action: () => { console.log('do something'); },
       });
-
 ```

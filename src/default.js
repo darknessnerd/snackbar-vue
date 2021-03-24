@@ -12,5 +12,6 @@ export default {
   textColor: '#E3E3E3',
   time: 5000,
   position: 'bottom',
+  font: '',
   close: false,
 };

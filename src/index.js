@@ -97,6 +97,8 @@ const SnackbarPlugin = {
               const { theme } = currentConfiguration.value;
               styles.value = `--primary: ${currentConfiguration.value[theme].primary};
               --text: ${currentConfiguration.value.textColor};
+              --font: ${currentConfiguration.value.font.family};
+              --font-size: ${currentConfiguration.value.font.size};
               --background: ${currentConfiguration.value.background};`;
             } else {
               styles.value = '';

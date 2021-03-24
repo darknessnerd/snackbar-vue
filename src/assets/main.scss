@@ -6,6 +6,7 @@ $sm: 576px;
   --text: #E3E3E3;
   --font: sans-serif;
   --padd: 16px;
+  --font-size: 22px;
 }
 
 @media screen and (max-width: $sm) {
@@ -28,6 +29,7 @@ $sm: 576px;
     background-color: var(--background);
     color: var(--text);
     font-family: var(--font);
+    font-size: var(--font-size);
     display: flex;
     flex-flow: row wrap;
     justify-content: center; /* align horizontal */
@@ -117,7 +119,7 @@ $sm: 576px;
         position: absolute;
         top: 0;
         left: 5px;
-        transform: scale(.9) ;
+        transform: scale(1) ;
         border-radius: 50%;
         transition: transform .1s ease-in;
       }
@@ -131,10 +133,10 @@ $sm: 576px;
     }
 }
 
-.snack-enter-active, .snack-leave-active {
+.snackbar-enter-active, .snackbar-leave-active {
   transition: all .4s ease;
 }
-.snack-enter, .snack-leave-to {
+.snackbar-enter, .snackbar-leave-to {
   opacity: 0;
   @media screen and (min-width: $sm) {
     &.bottom {

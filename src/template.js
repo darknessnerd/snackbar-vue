@@ -1,5 +1,5 @@
 export default `<teleport to="#app">
-<transition name="snack" v-if="currentConfiguration" >
+<transition name="snackbar" v-if="currentConfiguration" >
   <div v-if="currentConfiguration.action" :style="styles"
        class="snackbar"
        :class="currentConfiguration.position">
