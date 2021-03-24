@@ -10,7 +10,7 @@ export default {
   },
   background: '#353535',
   textColor: '#E3E3E3',
-  time: 7500,
+  time: 5000,
   position: 'bottom',
   close: false,
 };

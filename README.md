@@ -43,6 +43,8 @@ Now your component it's possible to inject the snackbar:
 
 ```js
 import { useSnackbarPlugin } from '@/index';
+// optionally import default styles
+import 'snackbar-vue/dist/snackbar-vue.common.css';
 // ...
 const snack = useSnackbarPlugin();
 

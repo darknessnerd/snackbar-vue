@@ -1,6 +1,7 @@
 import {
   defineComponent, ref, inject, watch, createVNode, render,
 } from 'vue';
+import '@/assets/main.scss';
 import Default from './default';
 import template from './template';
 
