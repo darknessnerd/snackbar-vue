@@ -24,20 +24,20 @@
 </template>
 
 <script>
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, computed } from 'vue';
 
 export default defineComponent({
   action: ref(false),
   props: ['currentConfiguration', 'close'],
   setup(props) {
-    const styles = ref('');
-    console.debug(props.currentConfiguration);
-    const { theme } = props.currentConfiguration;
-    styles.value = `--primary: ${props.currentConfiguration[theme].primary};
+    const styles = computed(() => {
+      const { theme } = props.currentConfiguration;
+      return `--primary: ${props.currentConfiguration[theme].primary};
       --text: ${props.currentConfiguration.textColor};
       --font: ${props.currentConfiguration.font.family};
       --font-size: ${props.currentConfiguration.font.size};
       --background: ${props.currentConfiguration.background};`;
+    });
 
     return { styles };
   },

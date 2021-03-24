@@ -48,7 +48,7 @@ Default configurations :
 ```
 
 ```js
-import {SnackbarPlugin} from "@/index";
+import {SnackbarPlugin} from 'snackbar-vue';
 
 /**
 Here it's possibile to override the default configuration
@@ -81,7 +81,7 @@ app.use(SnackbarPlugin, {
 Now your component it's possible to inject the snackbar:
 
 ```js
-import { useSnackbarPlugin } from '@/index';
+import { useSnackbarPlugin } from 'snackbar-vue';
 // optionally import default styles
 import 'snackbar-vue/dist/snackbar-vue.common.css';
 // ...
