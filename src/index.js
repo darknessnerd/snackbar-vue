@@ -39,7 +39,7 @@ const processQueue = () => {
   currentComponent = createVNode(Snackbar, {
     currentConfiguration: currentConfiguration.value,
     close,
-	teleportTo: Default.teleportTo,
+    teleportTo: Default.teleportTo,
   });
   // eslint-disable-next-line no-underscore-dangle
   currentComponent.appContext = appVue._context;

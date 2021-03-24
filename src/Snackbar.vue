@@ -29,7 +29,7 @@ import { ref, defineComponent, computed } from 'vue';
 
 export default defineComponent({
   action: ref(false),
-  props: ['currentConfiguration', 'close','teleportTo'],
+  props: ['currentConfiguration', 'close', 'teleportTo'],
   setup(props) {
     const styles = computed(() => {
       const { theme } = props.currentConfiguration;

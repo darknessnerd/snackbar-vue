@@ -47,7 +47,8 @@ Default configurations :
   "teleportTo": 'body'
 }
 ```
-Specifies a target element where snackbar will be moved
+Specifies a target element where there snackbar container will be moved,
+( this option does not have a visual effect, it's only where the div is appended because the snackbar have the fixed position ) 
 teleportTo has to be a valid query selector, example: 
 <!-- ok -->
 teleportTo="#some-id"
