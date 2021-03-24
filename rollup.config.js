@@ -32,7 +32,7 @@ export default {
     {
       file: pkg.unpkg,
       format: 'umd',
-      name: 'snackbar',
+      name: 'snackbar-vue',
       sourcemap: true,
       exports: 'named',
       globals: {
@@ -47,6 +47,9 @@ export default {
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production'),
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+    }),
+    alias({
+      vue: 'vue/dist/vue.esm.js',
     }),
     alias({
       entries: [
