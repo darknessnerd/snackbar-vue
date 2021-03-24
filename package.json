@@ -5,13 +5,13 @@
   "author": "Brunino Criniti <crinitib@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/darknessnerd/snackbar.git"
+    "url": "https://github.com/darknessnerd/snackbar-vue.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/darknessnerd/snackbar/issues"
+    "url": "https://github.com/darknessnerd/snackbar-vue"
   },
-  "homepage": "https://github.com/darknessnerd/snackbar",
+  "homepage": "https://github.com/darknessnerd/snackbar-vue",
   "keywords": [
     "vue3",
     "snackbar",
