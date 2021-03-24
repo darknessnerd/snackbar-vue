@@ -49,9 +49,6 @@ export default {
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
     }),
     alias({
-      vue: 'vue/dist/vue.esm-bundler.js',
-    }),
-    alias({
       entries: [
         {
           find: '@',
@@ -78,7 +75,13 @@ export default {
       ],
     }),
     commonjs(), // Convert CommonJS modules to ES6, so they can be included in a Rollup bundle
-    nodeResolve(),
+    nodeResolve(
+      {
+        alias: {
+          vue: 'vue/dist/vue.esm-bundler.js',
+        },
+      },
+    ),
     terser({
       output: {
         ecma: 5,
