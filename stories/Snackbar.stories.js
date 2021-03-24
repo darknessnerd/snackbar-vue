@@ -15,7 +15,7 @@ const Template = (args) => ({
         background: '#ffffff',
         textColor: '#000000',
         position: 'top',
-        text: `Test custom method ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()}`,
+        text: `Test custom method ${Date.now()} `,
         button: 'REDO',
         time: 100000000000,
         close: true,
@@ -23,13 +23,13 @@ const Template = (args) => ({
       });
       snack.show({
         position: 'bottom',
-        text: `Test Show ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()}`,
+        text: `Test Show ${Date.now()}`,
         time: 2000,
         close: true,
       });
       snack.danger({
         position: 'bottom ',
-        text: `Test Danger ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()}`,
+        text: `Test Danger ${Date.now()}`,
         button: 'ACTION',
         time: 2000,
         close: false,
@@ -37,7 +37,7 @@ const Template = (args) => ({
       });
       snack.success({
         position: 'bottom',
-        text: `Test Success ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()}`,
+        text: `Test Success ${Date.now()}`,
         button: 'ACTION',
         time: 2000,
         close: false,
@@ -45,7 +45,7 @@ const Template = (args) => ({
       });
       snack.show({
         position: 'bottom',
-        text: `Test Show ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()}`,
+        text: `Test Show ${Date.now()}`,
         button: 'ACTION',
         time: 2000,
         close: false,

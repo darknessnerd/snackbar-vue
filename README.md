@@ -48,6 +48,7 @@ import 'snackbar-vue/dist/snackbar-vue.common.css';
 // ...
 const snack = useSnackbarPlugin();
 
+// Custom method created from the plugin initialization
 snack.test({
   background: '#ffffff',
   textColor: '#000000',
@@ -56,7 +57,31 @@ snack.test({
   button: 'REDO',
   time: 5000,
   close: true,
-  action: () => { show(); },
+  action: () => { console.log('do something'); },
 });
    
+snack.show({
+        position: 'bottom',
+        text: `Test Show ${Date.now()}`,
+        time: 2000,
+        close: true,
+      });
+
+snack.danger({
+        position: 'bottom-right',
+        text: `Test Danger ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        close: false,
+        action: () => { console.log('do something'); },
+      });
+
+snack.success({
+        position: 'bottom-left',
+        text: `Test Success ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        action: () => { console.log('do something'); },
+      });
+
 ```
