@@ -13,7 +13,7 @@ const Template = (args) => ({
         background: '#ffffff',
         textColor: '#000000',
         position: 'top',
-        text: `prova ${Date.now()}`,
+        text: `prova ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()} ${Date.now()}`,
         button: 'REDO',
         time: 100000000000,
         close: true,

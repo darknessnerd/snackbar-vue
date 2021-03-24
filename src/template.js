@@ -6,11 +6,12 @@ export default `<teleport to="#app">
     <div class="snackbar__text">{{ currentConfiguration.text }}</div>
     <template v-if="currentConfiguration.button">
       <div @click.prevent="currentConfiguration.action"
-            class="snackbar__action">{{ currentConfiguration.button }}
+           class="snackbar__action">
+           <div>{{ currentConfiguration.button }} </div>
       </div>
     </template>
     <template v-if="currentConfiguration.close">
-      <div @click="close" class="snackbar__times">
+      <div @click="close" class="snackbar__close">
         <i class="gg-close"></i>
       </div>
     </template>

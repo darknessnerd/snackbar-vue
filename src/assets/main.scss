@@ -1,15 +1,33 @@
+$sm: 576px;
+
 .snackbar {
   --primary: #C849F4;
   --background: #353535;
   --text: #E3E3E3;
   --font: sans-serif;
-  --times: 22px;
-  --padd: 1rem;
+  --padd: 16px;
 }
-$sm: 576px;
-@function toRGB ($color) {
-  @return "rgb(" + red($color) + ", " + green($color) + ", " + blue($color)+ ")";
+
+@media screen and (max-width: $sm) {
+  .snackbar {
+    &__text {
+      flex-grow: 1;
+    }
+
+    &__action {
+      background-color: red;
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    &__close {
+      background-color: red;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
 }
+
 .snackbar {
     background-color: var(--background);
     color: var(--text);
@@ -19,7 +37,7 @@ $sm: 576px;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
     position: fixed;
-    min-height: var(--times);
+    min-height: var(--close);
     padding: var(--padd);
     border-radius: 8px;
     @media screen and (max-width: $sm) {
@@ -61,55 +79,29 @@ $sm: 576px;
 
     &__text {
         flex-grow: 1;
-        height: var(--times);
         display: flex;
         justify-content: left; /* align horizontal */
         align-items: center; /* align vertical */
     }
 
     &__action {
-        height: var(--times);
         text-transform: uppercase;
         font-weight: 500;
-        margin: 0 0 0 1rem;
         color: var(--primary);
         cursor: pointer;
         user-select: none;
         display: flex;
-        justify-content: left; /* align horizontal */
+        flex-flow: row nowrap;
+        justify-content: flex-end; /* align horizontal */
         align-items: center; /* align vertical */
     }
 
-    &__times {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: var(--times);
-        width: var(--times);
-        transform: scale(1);
-        margin-left: 1rem;
-
-        &:before {
-            display: block;
-            content: '';
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            top: -2px;
-            left: -4px;
-            transform: scale(0.2);
-            border-radius: 50%;
-            transition: transform .1s ease-in;
-        }
-
-        &:hover {
-            &:before {
-                background-color: var(--text);
-                opacity: .2;
-                transform: scale(1.5);
-            }
-        }
+    &__close {
+      margin-left: 8px;
+      flex-shrink: 0;
+      display: flex;
+      flex-flow: row nowrap;
+      cursor: pointer;
     }
 }
 
@@ -153,12 +145,13 @@ $sm: 576px;
   box-sizing: border-box;
   position: relative;
   display: block;
-  transform: scale(1.25);
+  transform: scale(1);
   width: 22px;
   height: 22px;
-  border: 0px solid transparent;
+  border: 2px solid transparent;
   border-radius: 40px
 }
+
 .gg-close::after,
 .gg-close::before {
   content: "";
@@ -171,8 +164,9 @@ $sm: 576px;
   transform: rotate(45deg);
   border-radius: 5px;
   top: 8px;
-  left: 0px
+  left: 1px
 }
+
 .gg-close::after {
   transform: rotate(-45deg)
 }
