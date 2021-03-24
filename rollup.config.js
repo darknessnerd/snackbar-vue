@@ -75,9 +75,6 @@ export default {
       ],
     }),
     commonjs(), // Convert CommonJS modules to ES6, so they can be included in a Rollup bundle
-    alias({
-      vue: require.resolve('vue/dist/vue.esm-bundler.js'),
-    }),
     nodeResolve(),
     terser({
       output: {
