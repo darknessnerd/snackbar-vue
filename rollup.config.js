@@ -63,8 +63,9 @@ export default {
     scss(),
     vuePlugin({
       target: 'browser',
+      css: false,
       template: {
-        optimizeSSR: true,
+        isProduction: true,
       },
     }),
     babel({
