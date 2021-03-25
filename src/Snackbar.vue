@@ -1,6 +1,5 @@
 <template>
 <teleport :to="teleportTo">
-{{teleportTo}}
 <transition name="snackbar" v-if="currentConfiguration" >
   <div v-if="currentConfiguration.action" :style="styles"
        class="snackbar"
