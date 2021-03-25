@@ -6,7 +6,10 @@ $sm: 576px;
   --text: #E3E3E3;
   --font: sans-serif;
   --padd: 16px;
+  --margin-top: 0px;
+  --margin-bottom: 0px;
   --font-size: 22px;
+  --position: fixed;
 }
 
 @media screen and (max-width: $sm) {
@@ -34,13 +37,15 @@ $sm: 576px;
     flex-flow: row wrap;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
-    position: fixed;
+    position: var(--position);
     min-height: var(--close);
     padding: var(--padd);
     border-radius: 4px;
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
     @media screen and (max-width: $sm) {
         border-radius: 2px;
-        width: calc(100% - (2 * var(--padd)));
+        width: calc(100%);
     }
     &.top, &.bottom {
         @media screen and (min-width: $sm) {

@@ -9,10 +9,15 @@ export default {
     primary: '#FF0057',
   },
   teleportTo: 'body',
+  teleportPosition: 'fixed',
   background: '#353535',
   textColor: '#E3E3E3',
   time: 5000,
   position: 'bottom',
-  font: '',
+  margin: {
+    top: '0px',
+    bottom: '0px',
+  },
+  font: 'Segoe, Segoe UI, Optima, Arial, sans-serif',
   close: false,
 };

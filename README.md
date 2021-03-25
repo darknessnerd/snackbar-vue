@@ -24,9 +24,9 @@
 $ npm install --save snackbar-vue
 ```
 
-Register the plugin
+### Register the plugin and confgiure it 
 
-Default configurations : 
+#### Default configurations : 
 ```json
 {
   "default": {
@@ -42,22 +42,36 @@ Default configurations :
   "textColor": "#E3E3E3",
   "time": 5000,
   "position": "bottom",
+  "margin": {
+    "top": "0px",
+    "bottom": "0px"
+  },
   "font": "sans-serif",
   "close": false,
-  "teleportTo": 'body'
+  "teleportTo": "body",
+  "teleportPosition": "fixed"
 }
 ```
-Specifies a target element where there snackbar container will be moved,
-( this option does not have a visual effect, it's only where the div is appended because the snackbar have the fixed position ) 
+#### custom position 
+If you would like to change the position  where the snackbar it's show, specifies a target element
+where the snackbar will be moved, by default the teleportPosition is set to fixed change it to relative.
 teleportTo has to be a valid query selector, example: 
-<!-- ok -->
 teleportTo="#some-id"
 teleportTo=".some-class"
 teleportTo="HTMLElelement"
 
-<!-- Wrong -->
-teleportTo="h1"
-teleportTo="some-string"
+Example: 
+we have in the body a div like this: 
+<div id="test">some content </div> 
+if we would like to show the snackbar inside the div change the configuration like this: 
+
+#### Install and configure 
+```json
+{
+  "teleportPosition": "relative",
+  "teleportTo": "#test"
+}
+```
 
 ```js
 import {SnackbarPlugin} from 'snackbar-vue';
@@ -89,7 +103,7 @@ app.use(SnackbarPlugin, {
   }]
 });
 ```
-
+#### Usage 
 Now your component it's possible to inject the snackbar:
 
 ```js
@@ -98,7 +112,30 @@ import { useSnackbarPlugin } from 'snackbar-vue';
 import 'snackbar-vue/dist/snackbar-vue.common.css';
 // ...
 const snack = useSnackbarPlugin();
-
+// Simple message with the close button 
+snack.show({
+        position: 'bottom',
+        text: `Test Show ${Date.now()}`,
+        time: 2000,
+        close: true,
+      });
+// Alert message with an action 
+snack.danger({
+        position: 'bottom-right',
+        text: `Test Danger ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        close: false,
+        action: () => { console.log('do something'); },
+      });
+// Success message with an action 
+snack.success({
+        position: 'bottom-left',
+        text: `Test Success ${Date.now()}`,
+        button: 'ACTION',
+        time: 2000,
+        action: () => { console.log('do something'); },
+      });
 // Custom method created from the plugin initialization
 snack.test({
   background: '#ffffff',
@@ -111,27 +148,5 @@ snack.test({
   action: () => { console.log('do something'); },
 });
    
-snack.show({
-        position: 'bottom',
-        text: `Test Show ${Date.now()}`,
-        time: 2000,
-        close: true,
-      });
 
-snack.danger({
-        position: 'bottom-right',
-        text: `Test Danger ${Date.now()}`,
-        button: 'ACTION',
-        time: 2000,
-        close: false,
-        action: () => { console.log('do something'); },
-      });
-
-snack.success({
-        position: 'bottom-left',
-        text: `Test Success ${Date.now()}`,
-        button: 'ACTION',
-        time: 2000,
-        action: () => { console.log('do something'); },
-      });
 ```

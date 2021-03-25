@@ -37,6 +37,9 @@ export default defineComponent({
       --text: ${props.currentConfiguration.textColor};
       --font: ${props.currentConfiguration.font.family};
       --font-size: ${props.currentConfiguration.font.size};
+      --margin-top: ${props.currentConfiguration.margin.top};
+      --margin-bottom: ${props.currentConfiguration.margin.bottom};
+      --position: ${props.currentConfiguration.teleportPosition};
       --background: ${props.currentConfiguration.background};`;
     });
 

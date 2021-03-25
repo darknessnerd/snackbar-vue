@@ -9,8 +9,9 @@ import '../stories/assets/custom.css';
 import { app } from '@storybook/vue3';
 
 app.use(SnackbarPlugin, {
-  time: 2000,
+  time: 100000,
   teleportTo: '#test',
+  teleportPosition: 'fixed',
   close: false,
   font: {
     family: 'Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif',
